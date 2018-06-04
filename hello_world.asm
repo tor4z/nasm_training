@@ -17,6 +17,5 @@ len equ $ - msg
 ; nasm -f elf hello_world.asm
 ;
 ; link with ld
-; ld --entry main -s -o hello hello_world.o
-
+; ld -m elf_i386  --entry main -s -o hello hello_world.o
 
