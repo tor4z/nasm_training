@@ -59,3 +59,6 @@ _start:
 	mov ebx, 0
 	int 0x80
 
+; nasm -g -f elf32 sys_call.asm
+; ld -g -m elf_i386 sys_call.o
+
