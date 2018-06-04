@@ -1,3 +1,4 @@
+; https://syscalls.kernelgrok.com/ 
 global _start
 
 section .data
