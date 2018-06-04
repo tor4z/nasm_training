@@ -17,7 +17,9 @@ The general registers are further divided into the following groups:
 
 32-bit register                                                   16-bit register
        31                             16 15            8 7              0
-|:----:|--------------------------------|:-------------:|:-------------:|
+
+| 32bit|               16bit            |      8bit     |      8bit     |
+|:----:|:------------------------------:|:-------------:|:-------------:|
 |  EAX |                                |       AH      |       AL      | AX accumulator register
 |  EBX |                                |       BH      |       BL      | BX base register
 |  ECX |                                |       CH      |       CL      | CX count register
