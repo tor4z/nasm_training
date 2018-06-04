@@ -14,3 +14,7 @@ segment .data
 msg	db 'Hello World!', 0xa
 len	equ	$ - msg
 
+; nasm -f elf hello_segment.asm
+; ld -m elf_i386 --entry main hello_segment.o
+;
+
