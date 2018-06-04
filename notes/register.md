@@ -14,6 +14,18 @@ The general registers are further divided into the following groups:
 * Pointer registers
 * Index registers
 
+32-bit register                                                   16-bit register
+   31			          16 15            8 7              0
+   ----------------------------------------------------------------------
+EAX|                                |       AH      |       AL      | AX accumulator register
+   ----------------------------------------------------------------------
+EBX|                                |       BH      |       BL      | BX base register
+   ----------------------------------------------------------------------
+ECX|                                |       CH      |       CL      | CX count register
+   ----------------------------------------------------------------------
+EDX|                                |       DH      |       DL      | DX data register
+   ----------------------------------------------------------------------
+
 
 ## Data Registers
 
