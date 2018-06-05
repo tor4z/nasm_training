@@ -110,7 +110,7 @@ Indicator
 EFLAGS
 ```
 
-###General registers 
+### General registers 
 
 As the title says, general register are the one we use most of the time Most of the instructions perform on these registers. They all can be broken down into 16 and 8 bit registers.
 
