@@ -14,9 +14,9 @@ section .text
 _start:
 	sub ah, ah	; Set ah to 00H
 	mov al, '9'	; Put '9' to al
-	sub al, '3'	; '9' - '3' = 6, value in al is number 6
-	aas		; convert number 6 to ascii, So 36H is store in al
-	or al, 30H	; 30H | 36H = 36H equal to ascii '6'
+	sub al, '3'	; '9' - '3' = 06H, value in al is number 06H
+	aas		; ASCII Adjust
+	or al, 30H	; 30H | 06H = 36H, convert 06H to ascii '6'
 	mov [res], ax	; Store ax value to res 
 
 	; Print msg
