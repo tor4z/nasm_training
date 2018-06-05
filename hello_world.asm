@@ -2,7 +2,7 @@ section .text
 	global main
 main:
 	mov edx, len
-	mov ecx, msg
+	mov ecx, msg	; At most one of the operands can be a memory operand
 	mov ebx, 1
 	mov eax, 4
 	int 0x80
