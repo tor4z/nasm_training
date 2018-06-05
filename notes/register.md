@@ -114,9 +114,11 @@ EFLAGS
 
 As the title says, general register are the one we use most of the time Most of the instructions perform on these registers. They all can be broken down into 16 and 8 bit registers.
 
+```
 32 bits :  EAX EBX ECX EDX
 16 bits : AX BX CX DX
  8 bits : AH AL BH BL CH CL DH DL
+```
 
 The "H" and "L" suffix on the 8 bit registers stand for high byte and low byte. With this out of the way, let's see their individual main use
 
