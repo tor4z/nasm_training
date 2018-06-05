@@ -156,3 +156,4 @@ Modifies Flags: None
 
 Transfers the Flags Register onto the stack. PUSHF saves a 16 bit value while PUSHFD saves a 32 bit value.
 
+[More Detail](http://www.penguin.cz/~literakl/intel/p.html)
