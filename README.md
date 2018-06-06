@@ -1,4 +1,4 @@
-# nasm SEL
+# NASM SEL
 
 
 ## Quick Notes
@@ -205,4 +205,16 @@ DAA - Decimal Adjust After Addition
 DAS - decimal Adjust After Subtraction
 ```
 There is no support for multiplication and division in packed BCD representation.
+
+### SECTION or SEGMENT: Changing and Defining Sections
+
+The SECTION directive (SEGMENT is an exactly equivalent synonym) changes which section of the output file the code
+you write will be assembled into. In some object file formats, the number and names of sections are fixed; in others,
+the user may make up as many as they wish. Hence SECTION may sometimes give an error message, or may define a new
+section, if you try to switch to a section that does not (yet) exist.
+
+The Unix object formats, and the bin object format, all support the standardized section
+names .text, .data and .bss for the code, data and uninitialized-data sections. The obj format, by contrast,
+does not recognize these section names as being special, and indeed will strip off the leading period of any
+section name that has one.
 
