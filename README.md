@@ -218,3 +218,13 @@ names .text, .data and .bss for the code, data and uninitialized-data sections. 
 does not recognize these section names as being special, and indeed will strip off the leading period of any
 section name that has one.
 
+
+### Repeat String Operation Prefix
+
+Repeats a string instruction the number of times specified in the count register ((E)CX) or until the indicated condition of the
+ZF flag is no longer met. The REP (repeat), REPE (repeat while equal), REPNE (repeat while not equal), REPZ (repeat while zero),
+and REPNZ (repeat while not zero) mnemonics are prefixes that can be added to one of the string instructions. The REP prefix can
+be added to the INS, OUTS, MOVS, LODS, and STOS instructions, and the REPE, REPNE, REPZ, and REPNZ prefixes can be added to the
+CMPS and SCAS instructions. (The REPZ and REPNZ prefixes are synonymous forms of the REPE and REPNE prefixes, respectively.) The
+behavior of the REP prefix is undefined when used with non-string instructions. [More detail](https://c9x.me/x86/html/file_module_x86_id_279.html)
+
