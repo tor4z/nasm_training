@@ -290,6 +290,26 @@ mov es:cx, 15h ; Move 15 to es:cx
 [See also](https://reverseengineering.stackexchange.com/questions/2006/how-are-the-segment-registers-fs-gs-cs-ss-ds-es-used-in-linux)
 
 
+### Repetition Prefixes
+
+The REP prefix, when set before a string instruction, for example - REP MOVSB, causes repetition of the
+instruction based on a counter placed at the CX register. REP executes the instruction, decreases CX by 1, and
+checks whether CX is zero. It repeats the instruction processing until CX is zero.
+
+The Direction Flag (DF) determines the direction of the operation.
+
+*Use CLD (Clear Direction Flag, DF = 0) to make the operation left to right.
+*Use STD (Set Direction Flag, DF = 1) to make the operation right to left.
+
+The REP prefix also has the following variations:
+
+*REP: it is the unconditional repeat. It repeats the operation until CX is zero.
+*REPE or REPZ: It is conditional repeat. It repeats the operation while the zero flag indicate equal/zero. It
+ stops when the ZF indicates not equal/zero or when CX is zero.
+*REPNE or REPNZ: It is also conditional repeat. It repeats the operation while the zero flag indicate not
+ equal/zero. It stops when the ZF indicates equal/zero or when CX is decremented to zero.
+
+
 
 ## References
 
