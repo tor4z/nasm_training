@@ -259,6 +259,24 @@ The register BP, SP, and IP are called pointer registers. BP is base pointer, SP
 used for preserving space to use local variables. SP is used to point the current stack. Although SP can be modified easily, you must be cautious.
 It's because doing the wrong thing with this register could cause your program in ruin. IP denotes the current pointer of the running program.
 It is always coupled with CS and it is NOT modifiable. So, the couple of CS:IP is a pointer pointing to the current instruction of running program.
-You can NOT access CS nor IP directly.
+You can NOT access CS nor IP directly. [See also](http://www.baskent.edu.tr/~tkaracay/etudio/ders/prg/pascal/PasHTM2/pas/lowlevel.html)
 
+### Segment register 
 
+In real mode each logical address points directly into physical memory location, every logical address consists of two 16 bit parts: 
+The segment part of the logical address contains the base address of a segment with a granularity of 16 bytes, i.e. a segments may start at
+physical address 0, 16, 32, ..., 220-16. The offset part of the logical address contains an offset inside the segment, i.e. the physical address
+can be calculated as
+` physical_address : = segment_part × 16 + offset` (if the address line A20 is enabled), respectively (`segment_part × 16 + offset) mod 220 `
+(if A20 is off) Every segment has a size of 216 bytes. [Wikipedia]
+
+The 286 architecture introduced 4 segments: CS (code segment) DS (data segment) SS (stack segment) ES (extra segment) the 386 architecture
+introduced two new general segment registers FS, GS.
+
+typical assembly opcode (in Intel syntax) would look like:
+
+```
+mov dx, 850h
+mov es, dx     ; Move 850h to es segment register
+mov es:cx, 15h ; Move 15 to es:cx
+```
