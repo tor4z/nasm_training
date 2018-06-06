@@ -38,3 +38,5 @@ exit:			; Exit
 	mov eax, 1
 	mov ebx, 0
 	int 0x80
+
+; In default the value in ES register equal to the value in DS register
