@@ -228,3 +228,37 @@ be added to the INS, OUTS, MOVS, LODS, and STOS instructions, and the REPE, REPN
 CMPS and SCAS instructions. (The REPZ and REPNZ prefixes are synonymous forms of the REPE and REPNE prefixes, respectively.) The
 behavior of the REP prefix is undefined when used with non-string instructions. [More detail](https://c9x.me/x86/html/file_module_x86_id_279.html)
 
+
+### Registers
+
+What is registers exactly? You can consider it as variables inside the CPU chip. Yeah! That depicts registers so close.
+There are several registers exist in PC:
+
+AX, BX, CX, DX, CS, DS, ES, SS, SP, BP, SI, DI, Flags, and IP
+
+They are all 16-bits. You can treat it as if they are word (or unsigned integer) variables. However, each registers has its own use.
+
+AX, BX, CX, and DX are general purpose registers. They can be assigned to any value you want. Of course you need to adjust it into your need.
+AX is usually called accumulator register, or just accumulator. Most of arithmatical operations are done with AX. Sometimes other general
+purpose registers can also be involved in arithmatical operation, such as DX. The register BX is usually called base register.
+The common use is to do array operations. BX is usually worked with other registers, most notably SP to point to stacks. The register CX is
+commonly called counter register. This register is used for counter purposes. That's why our PC can do looping. DX register is the data register.
+It is usually for reserving data value.
+
+The registers CS, DS, ES, and SS are called segment registers. You may not fiddle with these registers. You can only use them in the correct ways only.
+CS is called code segment register. It points to the segment of the running program. We may NOT modify CS directly. Oh yes, what is "segment" anyway?
+It's discussed later. :-) DS is called data segment register. It points to the segment of the data used by the running program. You can point this to
+anywhere you want as long as it contains the desired data. ES is called extra segment register. It is usually used with DI and doing pointers things.
+The couple DS:SI and ES:DI are commonly used to do string operations. SS is called stack segment register. It points to stack segment.
+
+The register SI and DI are called index registers. These registers are usually used to process arrays or strings. SI is called source index and DI
+is destination index. As the name follows, SI is always pointed to the source array and DI is always pointed to the destination. This is usually
+used to move a block of data, such as records (or structures) and arrays. These register is commonly coupled with DS and ES.
+
+The register BP, SP, and IP are called pointer registers. BP is base pointer, SP is stack pointer, and IP is instruction pointer. Usually BP is
+used for preserving space to use local variables. SP is used to point the current stack. Although SP can be modified easily, you must be cautious.
+It's because doing the wrong thing with this register could cause your program in ruin. IP denotes the current pointer of the running program.
+It is always coupled with CS and it is NOT modifiable. So, the couple of CS:IP is a pointer pointing to the current instruction of running program.
+You can NOT access CS nor IP directly.
+
+
