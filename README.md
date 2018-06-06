@@ -280,3 +280,4 @@ mov dx, 850h
 mov es, dx     ; Move 850h to es segment register
 mov es:cx, 15h ; Move 15 to es:cx
 ```
+[See also](https://reverseengineering.stackexchange.com/questions/2006/how-are-the-segment-registers-fs-gs-cs-ss-ds-es-used-in-linux)
