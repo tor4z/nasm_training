@@ -229,6 +229,13 @@ CMPS and SCAS instructions. (The REPZ and REPNZ prefixes are synonymous forms of
 behavior of the REP prefix is undefined when used with non-string instructions. [More detail](https://c9x.me/x86/html/file_module_x86_id_279.html)
 
 
+|Repeat Prefix  | Termination Condition 1| Termination Condition 2  |
+|:-------------:|:----------------------:|:------------------------:|
+|REP		|     	ECX=0		 |			None|
+|REPE/REPZ	|	ECX=0		 |			ZF=0|
+|REPNE/REPNZ	|	ECX=0		 | 			ZF=1|
+
+
 ### Registers
 
 What is registers exactly? You can consider it as variables inside the CPU chip. Yeah! That depicts registers so close.
