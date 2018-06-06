@@ -298,15 +298,15 @@ checks whether CX is zero. It repeats the instruction processing until CX is zer
 
 The Direction Flag (DF) determines the direction of the operation.
 
-*Use CLD (Clear Direction Flag, DF = 0) to make the operation left to right.
-*Use STD (Set Direction Flag, DF = 1) to make the operation right to left.
+* Use CLD (Clear Direction Flag, DF = 0) to make the operation left to right.
+* Use STD (Set Direction Flag, DF = 1) to make the operation right to left.
 
 The REP prefix also has the following variations:
 
-*REP: it is the unconditional repeat. It repeats the operation until CX is zero.
-*REPE or REPZ: It is conditional repeat. It repeats the operation while the zero flag indicate equal/zero. It
+* REP: it is the unconditional repeat. It repeats the operation until CX is zero.
+* REPE or REPZ: It is conditional repeat. It repeats the operation while the zero flag indicate equal/zero. It
  stops when the ZF indicates not equal/zero or when CX is zero.
-*REPNE or REPNZ: It is also conditional repeat. It repeats the operation while the zero flag indicate not
+* REPNE or REPNZ: It is also conditional repeat. It repeats the operation while the zero flag indicate not
  equal/zero. It stops when the ZF indicates equal/zero or when CX is decremented to zero.
 
 
