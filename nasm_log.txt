@@ -1,0 +1,653 @@
+tor@TravelMate:~/Test$ readelf -a as.o
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           Intel 80386
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          64 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           40 (bytes)
+  Number of section headers:         6
+  Section header string table index: 2
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        00000000 000130 000051 00  AX  0   0 16
+  [ 2] .shstrtab         STRTAB          00000000 000190 00002b 00      0   0  1
+  [ 3] .symtab           SYMTAB          00000000 0001c0 000080 10      4   7  4
+  [ 4] .strtab           STRTAB          00000000 000240 000022 00      0   0  1
+  [ 5] .rel.text         REL             00000000 000270 000008 08      3   1  4
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  p (processor specific)
+
+There are no section groups in this file.
+
+There are no program headers in this file.
+
+There is no dynamic section in this file.
+
+Relocation section '.rel.text' at offset 0x270 contains 1 entry:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000006  00000201 R_386_32          00000000   .text
+
+The decoding of unwind sections for machine type Intel 80386 is not currently supported.
+
+Symbol table '.symtab' contains 8 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 FILE    LOCAL  DEFAULT  ABS as.asm
+     2: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 00000016     0 NOTYPE  LOCAL  DEFAULT    1 compare
+     4: 00000037     0 NOTYPE  LOCAL  DEFAULT    1 eq
+     5: 00000043     0 NOTYPE  LOCAL  DEFAULT    1 msg
+     6: 0000000e     0 NOTYPE  LOCAL  DEFAULT  ABS len
+     7: 00000000     0 NOTYPE  GLOBAL DEFAULT    1 _start
+
+No version information found in this file.
+tor@TravelMate:~/Test$ objdump -s as.o
+
+as.o:     file format elf32-i386
+
+Contents of section .text:
+ 0000 ba0e0000 00b94300 0000bb01 000000b8  ......C.........
+ 0010 04000000 cd80b800 000000bb 00000000  ................
+ 0020 668cc866 8cdb6639 d8740cb8 01000000  f..f..f9.t......
+ 0030 bb010000 00cd80b8 01000000 bb020000  ................
+ 0040 00cd8048 656c6c6f 2c20776f 726c6421  ...Hello, world!
+ 0050 0a                                   .               
+
+tor@TravelMate:~/Test$ objdump -s as.o
+
+as.o:     file format elf32-i386
+
+Contents of section .text:
+ 0000 ba0e0000 00b94300 0000bb01 000000b8  ......C.........
+ 0010 04000000 cd80b800 000000bb 00000000  ................
+ 0020 668cc866 8cdb6639 d8740cb8 01000000  f..f..f9.t......
+ 0030 bb010000 00cd80b8 01000000 bb020000  ................
+ 0040 00cd8048 656c6c6f 2c20776f 726c6421  ...Hello, world!
+ 0050 0a                                   .               
+tor@TravelMate:~/Test$ et as.asm 
+tor@TravelMate:~/Test$ nasm as.asm -o as.o -f elf
+tor@TravelMate:~/Test$ objdump -s as.o
+
+as.o:     file format elf32-i386
+
+Contents of section .text:
+ 0000 ba0e0000 00b90000 0000bb01 000000b8  ................
+ 0010 04000000 cd80b800 000000bb 00000000  ................
+ 0020 668cc866 8cdb6639 d8740cb8 01000000  f..f..f9.t......
+ 0030 bb010000 00cd80b8 01000000 bb020000  ................
+ 0040 00cd80                               ...             
+Contents of section .data:
+ 0000 48656c6c 6f2c2077 6f726c64 210a      Hello, world!.  
+tor@TravelMate:~/Test$ readelf -a as.o
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           Intel 80386
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          64 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           40 (bytes)
+  Number of section headers:         7
+  Section header string table index: 3
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        00000000 000160 000043 00  AX  0   0 16
+  [ 2] .data             PROGBITS        00000000 0001b0 00000e 00  WA  0   0  4
+  [ 3] .shstrtab         STRTAB          00000000 0001c0 000031 00      0   0  1
+  [ 4] .symtab           SYMTAB          00000000 000200 000090 10      5   8  4
+  [ 5] .strtab           STRTAB          00000000 000290 000022 00      0   0  1
+  [ 6] .rel.text         REL             00000000 0002c0 000008 08      4   1  4
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  p (processor specific)
+
+There are no section groups in this file.
+
+There are no program headers in this file.
+
+There is no dynamic section in this file.
+
+Relocation section '.rel.text' at offset 0x2c0 contains 1 entry:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000006  00000301 R_386_32          00000000   .data
+
+The decoding of unwind sections for machine type Intel 80386 is not currently supported.
+
+Symbol table '.symtab' contains 9 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 FILE    LOCAL  DEFAULT  ABS as.asm
+     2: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 00000000     0 SECTION LOCAL  DEFAULT    2 
+     4: 00000016     0 NOTYPE  LOCAL  DEFAULT    1 compare
+     5: 00000037     0 NOTYPE  LOCAL  DEFAULT    1 eq
+     6: 00000000     0 NOTYPE  LOCAL  DEFAULT    2 msg
+     7: 0000000e     0 NOTYPE  LOCAL  DEFAULT  ABS len
+     8: 00000000     0 NOTYPE  GLOBAL DEFAULT    1 _start
+
+No version information found in this file.
+tor@TravelMate:~/Test$ et as.asm 
+tor@TravelMate:~/Test$ nasm as.asm -o as.o -f elf
+tor@TravelMate:~/Test$ readelf -a as.o
+ELF Header:
+  Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
+  Class:                             ELF32
+  Data:                              2's complement, little endian
+  Version:                           1 (current)
+  OS/ABI:                            UNIX - System V
+  ABI Version:                       0
+  Type:                              REL (Relocatable file)
+  Machine:                           Intel 80386
+  Version:                           0x1
+  Entry point address:               0x0
+  Start of program headers:          0 (bytes into file)
+  Start of section headers:          64 (bytes into file)
+  Flags:                             0x0
+  Size of this header:               52 (bytes)
+  Size of program headers:           0 (bytes)
+  Number of program headers:         0
+  Size of section headers:           40 (bytes)
+  Number of section headers:         6
+  Section header string table index: 2
+
+Section Headers:
+  [Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al
+  [ 0]                   NULL            00000000 000000 000000 00      0   0  0
+  [ 1] .text             PROGBITS        00000000 000130 000051 00  AX  0   0 16
+  [ 2] .shstrtab         STRTAB          00000000 000190 00002b 00      0   0  1
+  [ 3] .symtab           SYMTAB          00000000 0001c0 000080 10      4   7  4
+  [ 4] .strtab           STRTAB          00000000 000240 000022 00      0   0  1
+  [ 5] .rel.text         REL             00000000 000270 000008 08      3   1  4
+Key to Flags:
+  W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
+  L (link order), O (extra OS processing required), G (group), T (TLS),
+  C (compressed), x (unknown), o (OS specific), E (exclude),
+  p (processor specific)
+
+There are no section groups in this file.
+
+There are no program headers in this file.
+
+There is no dynamic section in this file.
+
+Relocation section '.rel.text' at offset 0x270 contains 1 entry:
+ Offset     Info    Type            Sym.Value  Sym. Name
+00000014  00000201 R_386_32          00000000   .text
+
+The decoding of unwind sections for machine type Intel 80386 is not currently supported.
+
+Symbol table '.symtab' contains 8 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 FILE    LOCAL  DEFAULT  ABS as.asm
+     2: 00000000     0 SECTION LOCAL  DEFAULT    1 
+     3: 00000000     0 NOTYPE  LOCAL  DEFAULT    1 msg
+     4: 0000000e     0 NOTYPE  LOCAL  DEFAULT  ABS len
+     5: 00000024     0 NOTYPE  LOCAL  DEFAULT    1 compare
+     6: 00000045     0 NOTYPE  LOCAL  DEFAULT    1 eq
+     7: 0000000e     0 NOTYPE  GLOBAL DEFAULT    1 _start
+
+No version information found in this file.
+tor@TravelMate:~/Test$ objdump -s as.o
+
+as.o:     file format elf32-i386
+
+Contents of section .text:
+ 0000 48656c6c 6f2c2077 6f726c64 210aba0e  Hello, world!...
+ 0010 000000b9 00000000 bb010000 00b80400  ................
+ 0020 0000cd80 b8000000 00bb0000 0000668c  ..............f.
+ 0030 c8668cdb 6639d874 0cb80100 0000bb01  .f..f9.t........
+ 0040 000000cd 80b80100 0000bb02 000000cd  ................
+ 0050 80                                   .               
+tor@TravelMate:~/Test$ 
+tor@TravelMate:~/Test$ ls
+a.out  as.asm  as.o
+tor@TravelMate:~/Test$ et as.
+as.asm  as.o    
+tor@TravelMate:~/Test$ et as.asm 
+tor@TravelMate:~/Test$ nasm -f elf as.asm as.o
+nasm: error: more than one input file specified
+type `nasm -h' for help
+tor@TravelMate:~/Test$ nasm -f elf as.asm -o as.o
+tor@TravelMate:~/Test$ emacs as.o
+tor@TravelMate:~/Test$ objdump -s as.o
+
+as.o:     file format elf32-i386
+
+Contents of section .data:
+ 0000 48656c6c 6f2c2077 6f726c64 210a4861  Hello, world!.Ha
+ 0010 6861                                 ha              
+Contents of section .text:
+ 0000 ba0e0000 00b90000 0000bb01 000000b8  ................
+ 0010 04000000 cd80b801 000000bb 00000000  ................
+ 0020 cd80                                 ..              
+
+tor@TravelMate:~/Test$ objdump -Slx as.o
+
+as.o:     file format elf32-i386
+as.o
+architecture: i386, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x00000000
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000012  00000000  00000000  00000160  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000022  00000000  00000000  00000180  2**4
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 as.asm
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .text	00000000 .text
+00000000 l       .data	00000000 msg
+0000000e l       *ABS*	00000000 len
+0000000e l       .data	00000000 msg2
+00000000 g       .text	00000000 _start
+
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+_start():
+   0:	ba 0e 00 00 00       	mov    $0xe,%edx
+   5:	b9 00 00 00 00       	mov    $0x0,%ecx
+			6: R_386_32	.data
+   a:	bb 01 00 00 00       	mov    $0x1,%ebx
+   f:	b8 04 00 00 00       	mov    $0x4,%eax
+  14:	cd 80                	int    $0x80
+  16:	b8 01 00 00 00       	mov    $0x1,%eax
+  1b:	bb 00 00 00 00       	mov    $0x0,%ebx
+  20:	cd 80                	int    $0x80
+tor@TravelMate:~/Test$ objdump -Slxs as.o
+
+as.o:     file format elf32-i386
+as.o
+architecture: i386, flags 0x00000011:
+HAS_RELOC, HAS_SYMS
+start address 0x00000000
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000012  00000000  00000000  00000160  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000022  00000000  00000000  00000180  2**4
+                  CONTENTS, ALLOC, LOAD, RELOC, READONLY, CODE
+SYMBOL TABLE:
+00000000 l    df *ABS*	00000000 as.asm
+00000000 l    d  .data	00000000 .data
+00000000 l    d  .text	00000000 .text
+00000000 l       .data	00000000 msg
+0000000e l       *ABS*	00000000 len
+0000000e l       .data	00000000 msg2
+00000000 g       .text	00000000 _start
+
+
+Contents of section .data:
+ 0000 48656c6c 6f2c2077 6f726c64 210a4861  Hello, world!.Ha
+ 0010 6861                                 ha              
+Contents of section .text:
+ 0000 ba0e0000 00b90000 0000bb01 000000b8  ................
+ 0010 04000000 cd80b801 000000bb 00000000  ................
+ 0020 cd80                                 ..              
+
+Disassembly of section .text:
+
+00000000 <_start>:
+_start():
+   0:	ba 0e 00 00 00       	mov    $0xe,%edx
+   5:	b9 00 00 00 00       	mov    $0x0,%ecx
+			6: R_386_32	.data
+   a:	bb 01 00 00 00       	mov    $0x1,%ebx
+   f:	b8 04 00 00 00       	mov    $0x4,%eax
+  14:	cd 80                	int    $0x80
+  16:	b8 01 00 00 00       	mov    $0x1,%eax
+  1b:	bb 00 00 00 00       	mov    $0x0,%ebx
+  20:	cd 80                	int    $0x80
+tor@TravelMate:~/Test$ ls
+a.out  as.asm  as.o
+tor@TravelMate:~/Test$ ld -m elf_i386 as.o 
+tor@TravelMate:~/Test$ ld
+ld: no input files
+tor@TravelMate:~/Test$ nasm -f elf as.asm -o as.o -g
+tor@TravelMate:~/Test$ ld -m elf_i386 as.o 
+tor@TravelMate:~/Test$ gdb ./a.out 
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) break _start
+Breakpoint 1 at 0x8048080
+(gdb) s
+The program is not being run.
+(gdb) r
+Starting program: /home/tor/Test/a.out 
+
+Breakpoint 1, 0x08048080 in _start ()
+(gdb) n
+Single stepping until exit from function _start,
+which has no line number information.
+Hello, world!
+[Inferior 1 (process 29848) exited normally]
+(gdb) info regster
+Undefined info command: "regster".  Try "help info".
+(gdb) info reg
+The program has no registers now.
+(gdb) r
+Starting program: /home/tor/Test/a.out 
+
+Breakpoint 1, 0x08048080 in _start ()
+(gdb) info all
+eax            0x0	0
+ecx            0x0	0
+edx            0x0	0
+ebx            0x0	0
+esp            0xffffd120	0xffffd120
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x8048080	0x8048080 <_start>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+st0            0	(raw 0x00000000000000000000)
+st1            0	(raw 0x00000000000000000000)
+st2            0	(raw 0x00000000000000000000)
+st3            0	(raw 0x00000000000000000000)
+st4            0	(raw 0x00000000000000000000)
+st5            0	(raw 0x00000000000000000000)
+st6            0	(raw 0x00000000000000000000)
+st7            0	(raw 0x00000000000000000000)
+fctrl          0x37f	895
+fstat          0x0	0
+ftag           0xffff	65535
+fiseg          0x0	0
+fioff          0x0	0
+foseg          0x0	0
+fooff          0x0	0
+fop            0x0	0
+mxcsr          0x1f80	[ IM DM ZM OM UM PM ]
+ymm0           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm1           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm2           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm3           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm4           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm5           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm6           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+---Type <return> to continue, or q <return> to quit---qq
+Quit
+(gdb) c
+Continuing.
+Hello, world!
+[Inferior 1 (process 29857) exited normally]
+(gdb) c
+The program is not being run.
+(gdb) q
+tor@TravelMate:~/Test$ cat as.asm
+section .data
+	msg     db  'Hello, world!',0xa                 ;our dear string
+	len     equ $ - msg                             ;length of our dear string
+	msg2	db  'Haha'
+
+section .text
+global      _start                              ;must be declared for linker (ld)
+
+_start:                                         ;tell linker entry point
+
+	mov edx,len                             ;message length
+	mov ecx,msg                             ;message to write
+	mov ebx,1                               ;file descriptor (stdout)
+	mov eax,4                               ;system call number (sys_write)
+	int 0x80                                ;call kernel
+
+	mov eax, 1
+	mov ebx, 0
+	int 0x80
+
+tor@TravelMate:~/Test$ et as.asm
+tor@TravelMate:~/Test$ nasm -f elf as.asm -o as.o -g
+tor@TravelMate:~/Test$ ld -m elf_i386 as.o 
+tor@TravelMate:~/Test$ gdb ./a.out 
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b _start
+Breakpoint 1 at 0x8048060
+(gdb) r
+Starting program: /home/tor/Test/a.out 
+
+Breakpoint 1, 0x08048060 in _start ()
+(gdb) info all
+eax            0x0	0
+ecx            0x0	0
+edx            0x0	0
+ebx            0x0	0
+esp            0xffffd120	0xffffd120
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x8048060	0x8048060 <_start>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+st0            0	(raw 0x00000000000000000000)
+st1            0	(raw 0x00000000000000000000)
+st2            0	(raw 0x00000000000000000000)
+st3            0	(raw 0x00000000000000000000)
+st4            0	(raw 0x00000000000000000000)
+st5            0	(raw 0x00000000000000000000)
+st6            0	(raw 0x00000000000000000000)
+st7            0	(raw 0x00000000000000000000)
+fctrl          0x37f	895
+fstat          0x0	0
+ftag           0xffff	65535
+fiseg          0x0	0
+fioff          0x0	0
+foseg          0x0	0
+fooff          0x0	0
+fop            0x0	0
+mxcsr          0x1f80	[ IM DM ZM OM UM PM ]
+ymm0           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm1           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm2           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm3           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm4           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm5           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm6           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+---Type <return> to continue, or q <return> to quit---
+ymm7           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+mm0            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm1            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm2            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm3            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm4            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm5            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm6            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+mm7            {uint64 = 0x0, v2_int32 = {0x0, 0x0}, v4_int16 = {0x0, 0x0, 0x0, 0x0}, v8_int8 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}}
+(gdb) 
+(gdb) c
+Continuing.
+Hello, world!
+[Inferior 1 (process 29878) exited normally]
+(gdb) q
+tor@TravelMate:~/Test$ ls
+a.out  as.asm  as.o
+tor@TravelMate:~/Test$ rm as.o a.out 
+tor@TravelMate:~/Test$ ls
+as.asm
+tor@TravelMate:~/Test$ cat as.asm
+section .text
+global      _start                              ;must be declared for linker (ld)
+
+_start:                                         ;tell linker entry point
+
+	mov edx,len                             ;message length
+	mov ecx,msg                             ;message to write
+	mov ebx,1                               ;file descriptor (stdout)
+	mov eax,4                               ;system call number (sys_write)
+	int 0x80                                ;call kernel
+
+	mov eax, 1
+	mov ebx, 0
+	int 0x80
+
+	msg     db  'Hello, world!',0xa                 ;our dear string
+	len     equ $ - msg                             ;length of our dear string
+	msg2	db  'Haha'
+tor@TravelMate:~/Test$ nasm -f elf as.asm -o as.o -g
+tor@TravelMate:~/Test$ ld -m elf_i386 as.o 
+tor@TravelMate:~/Test$ gdb ./a.out 
+GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b _start
+Breakpoint 1 at 0x8048060
+(gdb) r
+Starting program: /home/tor/Test/a.out 
+
+Breakpoint 1, 0x08048060 in _start ()
+(gdb) info all
+eax            0x0	0
+ecx            0x0	0
+edx            0x0	0
+ebx            0x0	0
+esp            0xffffd120	0xffffd120
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x8048060	0x8048060 <_start>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+st0            0	(raw 0x00000000000000000000)
+st1            0	(raw 0x00000000000000000000)
+st2            0	(raw 0x00000000000000000000)
+st3            0	(raw 0x00000000000000000000)
+st4            0	(raw 0x00000000000000000000)
+st5            0	(raw 0x00000000000000000000)
+st6            0	(raw 0x00000000000000000000)
+st7            0	(raw 0x00000000000000000000)
+fctrl          0x37f	895
+fstat          0x0	0
+ftag           0xffff	65535
+fiseg          0x0	0
+fioff          0x0	0
+foseg          0x0	0
+fooff          0x0	0
+fop            0x0	0
+mxcsr          0x1f80	[ IM DM ZM OM UM PM ]
+ymm0           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm1           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm2           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm3           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm4           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm5           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+ymm6           {v8_float = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_double = {0x0, 0x0, 0x0, 0x0}, v32_int8 = {0x0 <repeats 32 times>}, v16_int16 = {
+    0x0 <repeats 16 times>}, v8_int32 = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, v4_int64 = {0x0, 0x0, 0x0, 0x0}, v2_int128 = {0x0, 0x0}}
+---Type <return> to continue, or q <return> to quit---q
+Quit
+(gdb) c
+Continuing.
+Hello, world!
+[Inferior 1 (process 29899) exited normally]
+(gdb) q
